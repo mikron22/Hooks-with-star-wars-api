@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
-import { CHANGE_REQUEST } from '../actions'
+import { changeRequest } from '../actions'
 
 
-const RequestForm = dispatch => {
+const RequestForm = ({ dispatch }) => {
     const [category, setCategory] = useState('people')
     const [index, setIndex] = useState('')
 
     return (
-        <form className="list-group" onSubmit={(e) => {
+        <form className="list-group-item" onSubmit={(e) => {
             e.preventDefault()
             const data = {
                 "category": category,
                 "index": index
             }
-            dispatch({ type: CHANGE_REQUEST, payload: data })
+            changeRequest(dispatch, data)
         }}>
             <fieldset className="form-group">
                 <label className="form-check-label">

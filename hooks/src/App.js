@@ -1,7 +1,8 @@
 import React, { Fragment, useState, useEffect, useReducer } from 'react'
 import NavBar from './components/NavBar'
 import Dashboard from './components/Dashboard'
-import { requestReducer } from './reducers'
+import { requestReducer, itemReducer } from './reducers'
+import { makeRequest, setItem } from './actions'
 
 
 function App() {
@@ -11,29 +12,30 @@ function App() {
         'category': 'people',
         'index': ''
     })
+    const [currentItem, dispatchItem] = useReducer(itemReducer, {})
 
     useEffect(() => {
-        setLoading(true)
-        fetch(`https://swapi.co/api/${request.category}/${request.index}`)
-            .then(res => res.json())
-            .then(data => {
-                setItems(data.results)
-                setLoading(false)
-            }).catch(err => {
-                console.log(err)
-            })
-
+        makeRequest(setItems, setLoading, request)
     }, [request])
+
+    useEffect(() => {
+        setItem(dispatchItem, items[0])
+    }, [items])
 
     const render = (
         loading ? <h1>loading...</h1> :
-            <Dashboard items={items} dispatch={dispatch} />
+            <Dashboard
+                items={items}
+                dispatch={dispatch}
+                current={currentItem}
+                dispatchItem={dispatchItem}
+            />
     )
 
     return (
         <Fragment>
-            <NavBar />
-            <div className="container bg-secondaru">
+            <div className="container">
+                <NavBar />
                 {render}
             </div>
         </Fragment>
