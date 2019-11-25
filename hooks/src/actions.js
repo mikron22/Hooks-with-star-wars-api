@@ -26,6 +26,7 @@ export const makeRequest = (setItems, setLoading, request) => {
                 newData[0] = data
             setItems(newData)
             setLoading(false)
+            document.title = request.category.toUpperCase()
         }).catch(err => {
             console.log(err)
         })

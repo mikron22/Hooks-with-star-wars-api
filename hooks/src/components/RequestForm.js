@@ -7,7 +7,7 @@ const RequestForm = ({ dispatch }) => {
     const [index, setIndex] = useState('')
 
     return (
-        <form className="list-group-item" onSubmit={(e) => {
+        <form className="list-group" onSubmit={(e) => {
             e.preventDefault()
             const data = {
                 "category": category,

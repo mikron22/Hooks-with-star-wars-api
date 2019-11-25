@@ -1,8 +1,9 @@
 import React from 'react'
+import { setItem } from '../actions'
 
-const ListItem = props => {
+const ListItem = ({ info, dispatch }) => {
     return (
-        <p className="list-group-item list-group-item-action">{props.info.name}</p>
+        <p onClick={(e) => setItem(dispatch, info)} className="list-group-item list-group-item-action">{info.name}</p>
     )
 }
 

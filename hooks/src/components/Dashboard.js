@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import PlanetList from './PlanetList'
+import ItemList from './ItemList'
 import RequestForm from './RequestForm'
 import ItemDetail from './ItemDetail'
 
@@ -11,7 +11,7 @@ const Dashboard = ({ items, dispatch, current, dispatchItem }) => {
                     <div className="list-group-item list-group-item-action active bg-info">
                         <h2>Items</h2>
                     </div>
-                    <PlanetList items={items} />
+                    <ItemList items={items} dispatch={dispatchItem} />
                 </div>
                 <div className="col-6 text-truncate list-group">
                     <div className="list-group-item list-group-item-action active bg-info">

@@ -19,8 +19,8 @@ function App() {
     }, [request])
 
     useEffect(() => {
-        setItem(dispatchItem, items[0])
-    }, [items])
+        setItem(dispatchItem, currentItem)
+    }, [currentItem])
 
     const render = (
         loading ? <h1>loading...</h1> :
